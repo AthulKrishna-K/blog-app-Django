@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+<div class="container container-flex">
+    <main role="main">
+       
+        <article class="article-featured">
+            <div data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500">
+            <img src="{% static 'img/life.jpg'%}" alt="simple white desk on a white wall with a plant on the far right side" class="article-image">
+        </div>
+        </article>
+        {% for x in blogs %}
+        <div data-aos="zoom-in-down">
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2 class="article-title">{{x.title}}</h2>
+                <p class="article-body">{{x.description}}</p>
+                <a href="{% url 'details' post_id=x.id %}" class="article-read-more">CONTINUE READING</a>
+            </div>
+            <div class="article-recent-secondary">
+                <img src="{{x.image.url}}" alt="two dumplings on a wood plate with chopsticks" class="article-image">
+                <p class="article-info">{{x.date}}</p>
+            </div>
+        </article>
+    </div>
+        {% endfor %}
+        
+    </main>
+    
+    <aside class="sidebar">
+        
+        <div class="sidebar-widget">
+            <h2 class="widget-title">ABOUT ME</h2>
+            <img src="{% static 'img/about-me.jpg'%}" alt="john doe" class="widget-image">
+            <p class="widget-body">I find life better, and I'm happier, when things are nice and simple.</p>
+        </div>
+        
+        
+        
+    </aside>
+    
+</div>
+<script>
+    AOS.init();
+  </script>
+{% endblock %}
